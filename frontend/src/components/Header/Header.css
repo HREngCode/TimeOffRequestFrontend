@@ -1,0 +1,18 @@
+/* header container */
+.header {
+    height: 60px;
+    overflow: hidden;
+    background-color: rgb(149, 103, 28);
+    font-family: Arial;
+  }
+
+.header_image{
+    width: 110px;
+    height: 55px;
+    border-radius: 10px;
+    align-items: left;
+}
+
+.header-title{
+  text-align: center;
+}

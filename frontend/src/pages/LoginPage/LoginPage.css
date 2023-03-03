@@ -1,0 +1,27 @@
+.body {
+  background-color: gray;
+
+}
+
+.grid-container {
+  display: grid;
+  background-color: white;
+  justify-items: center;
+}
+
+.title {
+  margin-top: 25px;
+}
+
+.error {
+  color: red;
+}
+
+.form {
+  margin-top: 30px;
+  display: grid;
+  align-content: space-between;
+  justify-items: center;
+  justify-content: start;
+  text-align: center;
+}

@@ -29,9 +29,9 @@ function setEmployeeObject(employee) {
 
 export const EmployeeProvider = ({ children }) => {
   const BASE_URL = `${URL_HOST}/api/employees`;
-  // const userToken = JSON.parse(localStorage.getItem("token"));
+  const userToken = JSON.parse(localStorage.getItem("token"));
   // const decodedUser = userToken ? jwtDecode(userToken) : null;
-  // const [token, setToken] = useState(userToken);
+  const [token, setToken] = useState(userToken);
   const [employee, setEmployee] = useState(setEmployeeObject);
   const [isServerError, setIsServerError] = useState(false);
   const navigate = useNavigate();
@@ -52,13 +52,13 @@ export const EmployeeProvider = ({ children }) => {
         isAdmin: registerData.isAdmin
       };
 
-      let response = await axios.post(`${BASE_URL}/api/employees/changes/`, finalData);
-      // , {
-      //   headers: {
-      //     // Authorization: "Bearer " + token,
-      //   },
-      // }
-      // )
+      let response = await axios.post(`${BASE_URL}/api/employees/changes/`, finalData
+      , {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+      );
       console.log(response.data)
       if (response.status === 201) {
         console.log("Successful registration as employee! Log in to access token");

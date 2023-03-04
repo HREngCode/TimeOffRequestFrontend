@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
+import { URL_HOST } from "../../urlHost";
 
 //Component Imports
 import Navbar from "../../components/NavBar/NavBar";
@@ -24,7 +25,7 @@ const SupervisorPage = (props) => {
             //calls current employee number. If it's a supervisor, the value returned will be the employees that 
             //report to this number
            
-            let response = await axios.get(`http://127.0.0.1:8000/api/pto_requests/supervisor/${props.employeeData.employee_number}/`, { 
+            let response = await axios.get(`${URL_HOST}/api/pto_requests/supervisor/${props.employeeData.employee_number}/`, { 
                 headers: {
                 Authorization: "Bearer " + token,
                 },
@@ -48,7 +49,7 @@ const SupervisorPage = (props) => {
     };
     
     const handleApprovalToggle = async (ptoRequest) => {
-       await axios.patch(`http://127.0.0.1:8000/api/pto_requests/approval/${ptoRequest.id}/`, ptoApprove)
+       await axios.patch(`${URL_HOST}/api/pto_requests/approval/${ptoRequest.id}/`, ptoApprove)
        alert(`You have approved the request for ${ptoRequest.id} `)
       };
 

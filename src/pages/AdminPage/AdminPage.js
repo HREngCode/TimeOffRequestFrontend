@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import {useNavigate, Link} from 'react-router-dom';
+import { URL_HOST } from "../../urlHost";
 
 //Component Imports
 import Navbar from "../../components/NavBar/NavBar";
@@ -17,7 +18,7 @@ const AdminPage = (props) => {
 
         const fetchAllEmployees = async () => {//add async before parenthensis ahead of the arrow function
             try {
-            let response = await axios.get(`http://127.0.0.1:8000/api/employees/all/`, {
+            let response = await axios.get(`${URL_HOST}/api/employees/all/`, {
                 headers: {
                 Authorization: "Bearer " + token,
                 },

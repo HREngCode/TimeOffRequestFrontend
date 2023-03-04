@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useNavigate} from "react-router-dom"
+import { URL_HOST } from "../../urlHost";
 
 //Component Imports
 import Navbar from "../../components/NavBar/NavBar";
@@ -25,14 +26,14 @@ const NewTimeOffRequestPage = (props) => {
     useEffect(() => {
         const fetchEmployeeInfo = async () => {
             try {
-            let response = await axios.get(`http://127.0.0.1:8000/api/employees/user/${props.employeeData.user.id}/`, {
+            let response = await axios.get(`${URL_HOST}/api/employees/user/${props.employeeData.user.id}/`, {
                 headers: {
                 Authorization: "Bearer " + token,
                 },
             }
             )
             
-                let response2 = await axios.get(`http://127.0.0.1:8000/api/employees/employee_number/${response.data.supervisor_number}/`, {
+                let response2 = await axios.get(`${URL_HOST}/api/employees/employee_number/${response.data.supervisor_number}/`, {
                 headers: {
                 Authorization: "Bearer " + token,
                 }, 
@@ -53,7 +54,7 @@ const NewTimeOffRequestPage = (props) => {
     const addTimeOffRequest = async (newTimeOffRequest) => {
         try 
         {
-            let response = await axios.post('http://127.0.0.1:8000/api/pto_requests/new/', newTimeOffRequest, {
+            let response = await axios.post(`${URL_HOST}/api/pto_requests/new/`, newTimeOffRequest, {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }
@@ -73,7 +74,7 @@ const NewTimeOffRequestPage = (props) => {
     };
     
     const handleUpdateBalance = async (updatedPtoBalance) => {
-       await axios.patch(`http://127.0.0.1:8000/api/employees/pto_balance/${props.employeeData.id}/`, updatedPtoBalance)
+       await axios.patch(`${URL_HOST}/api/employees/pto_balance/${props.employeeData.id}/`, updatedPtoBalance)
       };
 
     function handleSubmit(event){

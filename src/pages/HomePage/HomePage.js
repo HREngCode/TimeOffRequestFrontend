@@ -4,13 +4,12 @@ import useAuth from "../../hooks/useAuth";
 import "../../App.css";
 import axios from "axios";
 import {useNavigate, Link } from 'react-router-dom';
+import { URL_HOST } from "../../urlHost";
 
 // Component Imports
 import Navbar from "../../components/NavBar/NavBar";
 import FullCal from "../../components/FullCalendar/FullCal";
 
-// Context Imports
-import {EmployeeInfoContext} from "../../context/EmployeeInfoContext";
 
 const HomePage = (props) => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -26,22 +25,20 @@ const HomePage = (props) => {
     if(props.employeeData.id)
     {
           const fetchPtoRequestByEmployee = async () => {//add async before parenthensis ahead of the arrow function
-      try {
-        let response = await axios.get(`http://127.0.0.1:8000/api/pto_requests/employee/${props.employeeData.id}/`, {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
-        setPtoRequests(response.data);
-        console.log(props)
-      } catch (error) {
-        console.log(error.response);
-      }    
-    }; 
-    fetchPtoRequestByEmployee();
+          try {
+            let response = await axios.get(`${URL_HOST}/api/pto_requests/employee/${props.employeeData.id}/`, {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          });
+          setPtoRequests(response.data);
+          console.log(props)
+          } catch (error) {
+            console.log(error.response);
+          }    
+        }; 
+      fetchPtoRequestByEmployee();
     }
-
-
 
   }, [props.employeeData.id]);//optional array to make sure this only runs once
 

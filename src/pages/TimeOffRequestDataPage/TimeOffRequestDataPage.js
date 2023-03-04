@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import {useNavigate, useParams} from "react-router-dom"
+import { URL_HOST } from "../../urlHost";
 
 //Component Imports
 import Navbar from "../../components/NavBar/NavBar";
@@ -25,7 +26,7 @@ const UpdatedTimeOffRequestPage = (props) => {
         const fetchRequest = async () => {
             try {
                 let response = await axios.get(
-                    `http://127.0.0.1:8000/api/pto_requests/request/${ptoRequestId}/`
+                    `${URL_HOST}/api/pto_requests/request/${ptoRequestId}/`
                 )
                 setPtoRequest(response.data)
                 setDateRequested(response.data.date_requested)
@@ -44,7 +45,7 @@ const UpdatedTimeOffRequestPage = (props) => {
     const updateTimeOffRequest = async (changeTimeOffRequest) => {
         try 
         {
-            await axios.put(`http://127.0.0.1:8000/api/pto_requests/update/${ptoRequestId}/`, changeTimeOffRequest, {
+            await axios.put(`${URL_HOST}/api/pto_requests/update/${ptoRequestId}/`, changeTimeOffRequest, {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }

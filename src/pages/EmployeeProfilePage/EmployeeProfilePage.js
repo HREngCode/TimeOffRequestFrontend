@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useNavigate, useParams} from "react-router-dom";
+import { URL_HOST } from "../../urlHost";
 
 //Component Imports
 import Navbar from "../../components/NavBar/NavBar"
@@ -34,7 +35,7 @@ const EmployeeProfilePage = (props) => {
         const fetchEmployeeInfo = async () => {
             try {
                 let response = await axios.get(
-                    `http://127.0.0.1:8000/api/employees/${employeeId}/`
+                    `${URL_HOST}/api/employees/${employeeId}/`
                 )
             setEmployee(response.data);
             setEmployeeNumber(response.data.employee_number);             
@@ -58,7 +59,7 @@ const EmployeeProfilePage = (props) => {
     const updateEmployeeInfo = async (changeEmployeeInfo) => {
         try 
         {
-            let response = await axios.put(`http://127.0.0.1:8000/api/employees/${employeeId}/`, changeEmployeeInfo, {
+            let response = await axios.put(`${URL_HOST}/api/employees/${employeeId}/`, changeEmployeeInfo, {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }
@@ -95,7 +96,7 @@ const EmployeeProfilePage = (props) => {
     };
     
     const handleActive = async () => {
-       await axios.patch(`http://127.0.0.1:8000/api/employees/pto_balance/${employeeId}/`, makeActive)
+       await axios.patch(`${URL_HOST}/api/employees/pto_balance/${employeeId}/`, makeActive)
        navigate("/")
       };
 
@@ -104,12 +105,12 @@ const EmployeeProfilePage = (props) => {
     };
     
     const handleInactive = async () => {
-       await axios.patch(`http://127.0.0.1:8000/api/employees/pto_balance/${employeeId}/`, makeInactive)
+       await axios.patch(`${URL_HOST}/api/employees/pto_balance/${employeeId}/`, makeInactive)
        navigate("/")
       };
     
     const handleDelete = async () => {
-       await axios.delete(`http://127.0.0.1:8000/api/employees/${employeeId}/`)
+       await axios.delete(`${URL_HOST}/api/employees/${employeeId}/`)
        navigate("/")
       };
 

@@ -38,13 +38,13 @@ function App() {
     const fetchEmployeeInfo = async () => {
       try {
       //Gets employee information from the user id
-      let response = await axios.get(`${URL_HOST}}/api/employees/user/${user.id}/`, {
+      let response = await axios.get(`${URL_HOST}/api/employees/user/${user.id}/`, {
         headers: {
         Authorization: "Bearer " + token,
         },
       });
       //Gets employee supervisor information
-      let response2 = await axios.get(`${URL_HOST}}/api/employees/employee_number/${response.data.supervisor_number}/`, {
+      let response2 = await axios.get(`${URL_HOST}/api/employees/employee_number/${response.data.supervisor_number}/`, {
         headers: {
         Authorization: "Bearer " + token,
         }, 
